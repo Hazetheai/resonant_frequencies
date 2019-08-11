@@ -14,7 +14,7 @@ const Speedometer = () => {
     socket.on("outgoing data", data => {
       setResponse(data.num);
     });
-    // socket.on("message", data => setResponse(data));
+    socket.on("message", data => setResponse(data));
   }, []);
   return (
     <ReactSpeedometer

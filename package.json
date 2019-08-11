@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://hazetheai.github.io/react-max-socket-ui",
+  "engines": {
+    "npm": "6.10.3",
+    "node": "10.15.1"
+  },
   "dependencies": {
     "gh-pages": "^2.1.1",
     "react": "^16.9.0",
