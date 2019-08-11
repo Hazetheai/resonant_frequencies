@@ -2,7 +2,6 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://hazetheai.github.io/react-max-socket-ui",
   "engines": {
     "npm": "6.10.3",
     "node": "10.15.1"
@@ -17,14 +16,11 @@
     "socket.io-client": "^2.2.0"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "PORT=7474 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:7879",
   "eslintConfig": {
     "extends": "react-app"
   },
