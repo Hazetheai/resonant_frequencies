@@ -20,6 +20,12 @@ const Speedometer = () => {
       needleTransition={"easeElastic"}
       ringWidth={30}
       textColor={"red"}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "50%",
+        margin: "auto"
+      }}
     />
   );
 };
