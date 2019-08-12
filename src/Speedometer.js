@@ -6,15 +6,10 @@ const Speedometer = () => {
   const [useResponse, setResponse] = useState(0);
   useEffect(() => {
     const socket = socketIOClient("https://192.168.0.145:7879");
-    if (socket) console.log("socket", socket);
-    console.log(
-      "process.env.REACT_APP_SERVER_URL",
-      process.env.REACT_APP_SERVER_URL
-    );
     socket.on("outgoing data", data => {
       setResponse(data.num);
     });
-    socket.on("message", data => setResponse(data));
+    // socket.on("message", data => setResponse(data));
   }, []);
   return (
     <ReactSpeedometer
