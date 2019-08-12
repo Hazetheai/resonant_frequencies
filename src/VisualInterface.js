@@ -80,10 +80,10 @@ const VisualInterface = () => {
         <button
           style={button}
           type="submit"
-          value="noise.voronoi"
+          value="transfer.saw"
           onClick={chooseBasis}
         >
-          Voronoi
+          Saw
         </button>
       </div>
       <div style={container} className="shape">
