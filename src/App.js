@@ -1,7 +1,6 @@
 import React from "react";
-import SocketIOForm from "./socketForm";
-import SocketOutput from "./SocketOutput";
-import Speedometer from "./Speedometer";
+
+import VisualInterface from "./VisualInterface";
 
 const App = () => {
   return (
@@ -15,9 +14,7 @@ const App = () => {
         justifyContent: "center"
       }}
     >
-      <Speedometer />
-      <SocketOutput />
-      <SocketIOForm />
+      <VisualInterface />
     </div>
   );
 };
