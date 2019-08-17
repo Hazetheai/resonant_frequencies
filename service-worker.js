@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/resonant_frequencies/precache-manifest.a1b6c58c59a650ca7900d642f2ebbd9b.js"
+  "/resonant_frequencies/precache-manifest.6a9a5c61666541e7d4b73ff34d58479a.js"
 );
 
 self.addEventListener('message', (event) => {
