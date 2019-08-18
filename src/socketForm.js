@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import socketIOClient from "socket.io-client";
-const socket = socketIOClient(process.env.REACT_APP_SERVER_URL);
+import "./fix.css";
+const socket = socketIOClient(process.env.REACT_APP_SERVER_URL, {
+  rejectUnauthorized: false
+});
 
 const SocketIOForm = () => {
   const [userName, setUserName] = useState("");
@@ -17,6 +20,7 @@ const SocketIOForm = () => {
   const handleChange = e => {
     setSliderVal(e.target.value);
     socket.emit("slider", sliderVal);
+    console.log("userName", userName);
   };
   return (
     <div>

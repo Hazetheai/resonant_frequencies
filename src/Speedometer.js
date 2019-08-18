@@ -5,7 +5,9 @@ import socketIOClient from "socket.io-client";
 const Speedometer = () => {
   const [useResponse, setResponse] = useState(0);
   useEffect(() => {
-    const socket = socketIOClient("https://192.168.0.145:7879");
+    const socket = socketIOClient(process.env.REACT_APP_SERVER_URL, {
+      rejectUnauthorized: false
+    });
     socket.on("outgoing data", data => {
       setResponse(data.num);
     });

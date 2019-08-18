@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import socketIOClient from "socket.io-client";
-const socket = socketIOClient(process.env.REACT_APP_SERVER_URL);
+const socket = socketIOClient(process.env.REACT_APP_SERVER_URL, {
+  rejectUnauthorized: false
+});
 
 const VisualInterface = () => {
   const [periodVal, setPeriodVal] = useState(10);
@@ -67,15 +69,7 @@ const VisualInterface = () => {
           value="noise.distorted"
           onClick={chooseBasis}
         >
-          distorted
-        </button>
-        <button
-          style={button}
-          type="submit"
-          value="fractal.hetero"
-          onClick={chooseBasis}
-        >
-          Hetero
+          Distorted
         </button>
         <button
           style={button}
@@ -84,6 +78,14 @@ const VisualInterface = () => {
           onClick={chooseBasis}
         >
           Saw
+        </button>
+        <button
+          style={button}
+          type="submit"
+          value="noise.voronoi"
+          onClick={chooseBasis}
+        >
+          Voronoi
         </button>
       </div>
       <div style={container} className="shape">

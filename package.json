@@ -2,12 +2,16 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://hazetheai.github.io/react-max-socket-ui",
+  "homepage": "https://hazetheai.github.io/resonant_frequencies",
   "dependencies": {
     "gh-pages": "^2.1.1",
+    "p5": "^0.9.0",
     "react": "^16.9.0",
     "react-d3-speedometer": "^0.6.1",
     "react-dom": "^16.9.0",
+    "react-eyedrop": "^3.3.2",
+    "react-eyedropper": "0.0.10",
+    "react-p5-wrapper": "^2.0.0",
     "react-router-dom": "5.0.1",
     "react-scripts": "3.1.0",
     "socket.io-client": "^2.2.0"
@@ -15,12 +19,12 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "PORT=7474 react-scripts start",
+    "start": "PORT=2020 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:7879",
+  "proxy": "http://172.20.80.176:2019",
   "eslintConfig": {
     "extends": "react-app"
   },

@@ -5,7 +5,9 @@ const SocketOutput = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const socket = socketIOClient(process.env.REACT_APP_SERVER_URL);
+    const socket = socketIOClient(process.env.REACT_APP_SERVER_URL, {
+      rejectUnauthorized: false
+    });
     socket.on("message", msg => setMessage(msg));
   }, []);
 
