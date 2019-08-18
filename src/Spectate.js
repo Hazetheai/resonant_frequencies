@@ -10,12 +10,15 @@ const socket = socketIOClient(process.env.REACT_APP_SERVER_URL, {
 // let's assume that the client page, once rendered, knows what room it wants to join
 const room = "spectate";
 
-export default function Spectate() {
+export default function Spectate(props) {
   const ref = useRef(null);
 
   const [color, setColor] = useState({ r: 225, g: 198, b: 153 });
-  const [val, setVal] = useState(0);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePosSpec] = useState({ x: 0, y: 0 });
+
+  socket.on("borderColor", data => {
+    setColor(`rgb(${data.R}, ${data.G}, ${data.B})`);
+  });
 
   useEffect(() => {
     socket.on("connect", function() {
@@ -31,30 +34,11 @@ export default function Spectate() {
       setColor(data);
     });
   }, []);
-  console.log("socket", socket.io);
 
-  const handleChange = e => {
-    setVal(e.target.value);
-    console.log("sliderSpectate", val);
-  };
-
-  const mouseMove = e => {
-    const width = ref.current ? ref.current.offsetWidth : 0;
-    const height = ref.current ? ref.current.offsetHeight : 0;
-
-    console.log("width", width);
-    setMousePos({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
-    let imageWidth = width;
-    let imageHeight = height;
-
-    const w = Math.round(parseInt(imageWidth));
-    const h = Math.round(parseInt(imageHeight));
-
+  socket.on("ALDSJSD", mousePos => {
+    setMousePosSpec(mousePos);
     console.log("mousePos", mousePos);
-    socket.on("borderColor", data => {
-      console.log("data", data);
-    });
-  };
+  });
 
   //   CSS
   const mainImage = {
@@ -78,9 +62,8 @@ export default function Spectate() {
   };
   return (
     <div className="spectators" style={container}>
-      <h3>spectate</h3>
       <img src={header} alt="header" style={headerStyle} />
-      <div ref={ref} className="imageWrapper" onTouchMove={mouseMove}>
+      <div ref={ref} className="imageWrapper">
         <img src={background} alt="geodesic pattern" style={mainImage} />
       </div>
     </div>

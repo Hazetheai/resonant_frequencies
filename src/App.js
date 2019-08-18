@@ -17,8 +17,8 @@ const App = () => {
             backgroundColor: "#e1c699"
           }}
         >
-          <Route path="/" component={Spectate} />
-          <Route path="/" component={Participate} />
+          <Route exact path="/" component={Spectate} />
+          <Route exact path="/compose" component={Participate} />
         </div>
       </Router>
     </UserProvider>

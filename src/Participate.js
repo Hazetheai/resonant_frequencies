@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import socketIOClient from "socket.io-client";
 import EyeDropper from "react-eyedropper";
-import UserContext from "./UserContext";
 
 import "./fix.css";
 import background from "./images/background.gif";
@@ -13,13 +12,10 @@ const socket = socketIOClient(process.env.REACT_APP_SERVER_URL, {
 // let's assume that the client page, once rendered, knows what room it wants to join
 const room = "compose";
 
-export default function Spectate() {
+export default function Spectate(props) {
   const [color, setColor] = useState({ r: 225, g: 198, b: 153 });
-  const [val, setVal] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [rgb, setRGB] = useState({ r: 225, g: 198, b: 153 });
   const ref = useRef(null);
-  const user = useContext(UserContext);
   useEffect(() => {
     socket.on("connect", function() {
       // Connected, let's sign-up for to receive messages for this room
@@ -34,12 +30,6 @@ export default function Spectate() {
       setColor(data);
     });
   }, []);
-
-  const handleChange = e => {
-    setVal(e.target.value);
-    socket.emit("sliderSpectate", val);
-    console.log("sliderSpectate", val);
-  };
 
   const mouseMove = e => {
     const width = ref.current ? ref.current.offsetWidth : 0;
@@ -59,28 +49,28 @@ export default function Spectate() {
     // Radius
 
     const midW = w / 2;
-    const midH = h / 2;
+    // const midH = h / 2;
 
     let centredX = Math.round(mousePos.x - midW);
-    let centredY = Math.round(mousePos.y - midH);
+    // let centredY = Math.round(mousePos.y - midH);
     // console.log("centredX", centredX);
     // console.log("centredY", centredY);
 
     // Red x & y coords
     let centredRX = Math.round((mousePos.x - seventhX) * 0.9);
-    let centredRY = Math.round((mousePos.y - seventhY) * 0.9);
+    // let centredRY = Math.round((mousePos.y - seventhY) * 0.9);
     // console.log("CEN-R", centredRX, centredRY);
     // Blue x & y coords
-    let centredGX = Math.round((centredX - seventhX) * 2);
+    // let centredGX = Math.round((centredX - seventhX) * 2);
     let centredGY = Math.round(mousePos.y - seventhY * 4.5);
     // console.log("CEN-G", centredGX, centredGY);
     // Green x & y coords
     let centredBX = Math.round(mousePos.x - seventhX * 6);
-    let centredBY = Math.round(mousePos.y - seventhY * 2.4);
+    // let centredBY = Math.round(mousePos.y - seventhY * 2.4);
     // console.log("CEN-B", centredBX, centredBY);
     // Violet x & y coords
-    let centredVX = Math.round(mousePos.x - seventhX * 3.5);
-    let centredVY = Math.round(mousePos.y - seventhY * 2);
+    // let centredVX = Math.round(mousePos.x - seventhX * 3.5);
+    // let centredVY = Math.round(mousePos.y - seventhY * 2);
     // console.log("CEN-V", centredVX, centredVY);
 
     const radius = Math.sqrt(seventhX * 4 * (seventhX * 4));
@@ -178,16 +168,16 @@ export default function Spectate() {
 
     console.log("baseCol", getBaseCol(rgb2hsl([R, G, B])));
 
-    socket.emit("baseCol");
+    socket.emit("ALDSJSD", mousePos);
+    console.log("mousePos", mousePos);
+    socket.emit("baseCol", getBaseCol(rgb2hsl([R, G, B])));
     socket.emit("borderColor", { R, G, B });
-
-    return { R, G, B };
   };
 
-  const eyeDropper = ({ r, g, b }) => {
-    // setRGB({ r: r, g: g, b: b });
-    setColor(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
-  };
+  //   const eyeDropper = ({ r, g, b }) => {
+  //     // setRGB({ r: r, g: g, b: b });
+  //     setColor(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`);
+  //   };
 
   //   CSS
   const mainImage = {
@@ -210,14 +200,14 @@ export default function Spectate() {
     borderColor: color
   };
 
-  const slider = {
-    padding: "30px",
-    margin: "40px"
-  };
+  //   const slider = {
+  //     padding: "30px",
+  //     margin: "40px"
+  //   };
 
-  const wrapper = {
-    padding: "4vw"
-  };
+  //   const wrapper = {
+  //     padding: "4vw"
+  //   };
 
   return (
     <div className="spectators" style={container}>
